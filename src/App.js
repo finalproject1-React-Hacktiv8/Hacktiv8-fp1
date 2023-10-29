@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Programming from "./pages/Programming";
+import Covid19 from "./pages/Covid19";
+import Indonesia from "./pages/Indonesia";
+import Search from "./pages/Search";
+import Saved from "./pages/Saved"
+import { ToastContainer } from 'react-toastify';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app_container">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Indonesia />} />
+        <Route path="/programming" element={<Programming />} />
+        <Route path="/covid19" element={<Covid19 />} />
+        <Route path="/search/:keyword" element={<Search />} />
+        <Route path="/saved" element={<Saved />} />
+      </Routes>
+      <Footer />
+      <ToastContainer />
     </div>
   );
-}
+};
 
 export default App;
