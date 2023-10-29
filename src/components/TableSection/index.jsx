@@ -3,6 +3,7 @@ import { deleteSaved } from "../../redux/NewsSlice";
 import Table from "react-bootstrap/Table";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Button} from "react-bootstrap";
 
 const TableSection = ({ headers, datas }) => {
     const dispatch = useDispatch();
@@ -28,7 +29,10 @@ const TableSection = ({ headers, datas }) => {
                     datas?.map((data, dataIdx) => {
                         return (
                             <tr key={dataIdx}>
+                                <div >
                                 <td>{data.source.name}</td>
+                                <Button href={data.url} target="_blank">News Page</Button>{" "}
+                                </div>
                                 <td>{data.title}</td>
                                 <td>{data.description}</td>
                                 <td style={{ color: "red", cursor: "pointer" }} onClick={() => handleDelete(data.id)}>Delete</td>
