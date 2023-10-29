@@ -5,16 +5,25 @@ import NewsCards from "../../components/NewsCards";
 import SectionHeader from "../../components/SectionHeader";
 
 const Covid19 = () => {
-  const [data, setDatas] = useState(null);
+  const [articles, setArticles] = useState(null);
 
   useEffect(() => {
-    getNews("Covid").then((res) => setDatas(res.data.articles));
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    getNews("COVID-19", thirtyDaysAgo.toISOString()).then((res) => {
+      const filteredArticles = res.data.articles.filter(
+        (article) => new Date(article.publishedAt) > thirtyDaysAgo
+      );
+
+      setArticles(filteredArticles);
+    });
   }, []);
 
   return (
     <>
-      <SectionHeader title="COVID 19 News" />
-      {data ? <NewsCards data={data} /> : <InfinitySpin color="black" />}
+      <SectionHeader title="COVID-19 News" />
+      {articles ? <NewsCards data={articles} /> : <InfinitySpin color="black" />}
     </>
   );
 };

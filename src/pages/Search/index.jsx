@@ -12,7 +12,14 @@ const Search = () => {
 
   useEffect(() => {
     setDatas(null);
-    getNews(keyword).then((res) => setDatas(res.data.articles));
+    getNews(keyword).then((res) => {
+      const sortedArticles = res.data.articles.sort((a, b) => {
+        const dateA = new Date(a.publishedAt);
+        const dateB = new Date(b.publishedAt);
+        return dateB - dateA;
+      });
+      setDatas(sortedArticles);
+    });
   }, [keyword]);
 
   return (
