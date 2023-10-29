@@ -5,16 +5,25 @@ import NewsCards from "../../components/NewsCards";
 import SectionHeader from "../../components/SectionHeader";
 
 const Programming = () => {
-  const [data, setDatas] = useState(null);
+  const [articles, setArticles] = useState(null);
 
   useEffect(() => {
-    getNews("Programming").then((res) => setDatas(res.data.articles));
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    getNews("Programming", thirtyDaysAgo.toISOString()).then((res) => {
+      const filteredArticles = res.data.articles.filter(
+        (article) => new Date(article.publishedAt) > thirtyDaysAgo
+      );
+
+      setArticles(filteredArticles);
+    });
   }, []);
 
   return (
     <>
       <SectionHeader title="Programming News" />
-      {data ? <NewsCards data={data} /> : <InfinitySpin color="black" />}
+      {articles ? <NewsCards data={articles} /> : <InfinitySpin color="black" />}
     </>
   );
 };
