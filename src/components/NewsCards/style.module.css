@@ -1,8 +1,7 @@
 .missing {
   display: flex;
   justify-content: center;
-  font-weight: 200;
-  padding: 12rem 0;
+  padding: 16rem;
   font-style: italic;
   width: 100%;
 }

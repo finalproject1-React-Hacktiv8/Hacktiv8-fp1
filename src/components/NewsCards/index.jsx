@@ -1,6 +1,6 @@
 import Row from "react-bootstrap/Row";
 import NewsCard from "../NewsCard";
-import styles from "./styles.css";
+import styles from "./style.module.css";
 
 const NewsCards = ({ data }) => {
   return (
