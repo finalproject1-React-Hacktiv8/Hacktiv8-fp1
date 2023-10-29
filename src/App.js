@@ -7,6 +7,8 @@ import Programming from "./pages/Programming";
 import Covid19 from "./pages/Covid19";
 import Indonesia from "./pages/Indonesia";
 import Search from "./pages/Search";
+import Saved from "./pages/Saved"
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
@@ -17,8 +19,10 @@ const App = () => {
         <Route path="/programming" element={<Programming />} />
         <Route path="/covid19" element={<Covid19 />} />
         <Route path="/search/:keyword" element={<Search />} />
+        <Route path="/saved" element={<Saved />} />
       </Routes>
       <Footer />
+      <ToastContainer />
     </div>
   );
 };
